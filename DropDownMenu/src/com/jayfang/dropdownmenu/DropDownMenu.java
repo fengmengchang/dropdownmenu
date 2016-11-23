@@ -33,7 +33,7 @@ public class DropDownMenu extends LinearLayout{
     private List<MenuListAdapter> mMenuAdapters=new ArrayList<MenuListAdapter>();
 
     // Menu 展开的 list item
-    private List<String[]> mMenuItems=new ArrayList<String[]>();
+    private List<DropItemBean> mMenuItems=new ArrayList<DropItemBean>();
 
     //菜单 上的文字
     private List<TextView> mTvMenuTitles=new ArrayList<TextView>();
@@ -127,7 +127,7 @@ public class DropDownMenu extends LinearLayout{
         mMenuPressedTitleTextColor=getResources().getColor(R.color.default_menu_press_text);
         mMenuBackColor=getResources().getColor(R.color.default_menu_back);
         mMenuListBackColor=getResources().getColor(R.color.white);
-        mMenuListSelectorRes=R.color.white;
+        mMenuListSelectorRes=getResources().getColor(R.color.white);
         mMenuTitleTextSize=18;
         mArrowMarginTitle=10;
         mShowCheck=true;
@@ -139,7 +139,7 @@ public class DropDownMenu extends LinearLayout{
     }
 
     // 设置 Menu的item
-    public void setmMenuItems(List<String[]> menuItems) {
+    public void setmMenuItems(List<DropItemBean> menuItems) {
         mMenuItems = menuItems;
         mDrawable=true;
         invalidate();
@@ -261,7 +261,7 @@ public class DropDownMenu extends LinearLayout{
                     mPopupWindow.dismiss();
                     mRowSelected = position;
 
-                    mTvMenuTitles.get(mColumnSelected).setText(mMenuItems.get(mColumnSelected)[mRowSelected]);
+                    mTvMenuTitles.get(mColumnSelected).setText(mMenuItems.get(mColumnSelected).getMenulist().get(mRowSelected).getMenuname());
                     mIvMenuArrow.get(mColumnSelected).setImageResource(mDownArrow);
                     mMenuAdapters.get(mColumnSelected).setSelectIndex(mRowSelected);
                     if (mMenuSelectedListener == null && isDebug)
@@ -290,7 +290,7 @@ public class DropDownMenu extends LinearLayout{
 
             if (mMenuAdapters.size() == 0) {
                 for (int i = 0; i < mMenuCount; i++) {
-                    MenuListAdapter adapter = new MenuListAdapter(mContext, mMenuItems.get(i));
+                    MenuListAdapter adapter = new MenuListAdapter(mContext, mMenuItems.get(i).getMenulist());
                     adapter.setShowCheck(mShowCheck);
                     adapter.setCheckIcon(mCheckIcon);
                     mMenuAdapters.add(adapter);
@@ -311,7 +311,7 @@ public class DropDownMenu extends LinearLayout{
                 tv.setTextColor(mMenuTitleTextColor);
                 tv.setTextSize(mMenuTitleTextSize);
                 if (mDefaultMenuTitle==null||mDefaultMenuTitle.length==0){
-                    tv.setText(mMenuItems.get(i)[0]);
+                    tv.setText(mMenuItems.get(i).getMenulist().get(0).getMenuname());
                 }else{
                     tv.setText(mDefaultMenuTitle[i]);
                 }
@@ -349,7 +349,7 @@ public class DropDownMenu extends LinearLayout{
                         if (!mShowDivider)
                             mMenuList.setDivider(null);
                         mMenuList.setBackgroundColor(mMenuListBackColor);
-                        mMenuList.setSelector(mMenuListSelectorRes);
+//                        mMenuList.setSelector(mMenuListSelectorRes);
                         mColumnSelected = index;
                         mTvMenuTitles.get(index).setTextColor(mMenuPressedTitleTextColor);
                         mRlMenuBacks.get(index).setBackgroundColor(mMenuPressedBackColor);

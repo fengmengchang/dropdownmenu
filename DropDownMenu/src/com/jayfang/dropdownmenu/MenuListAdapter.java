@@ -1,5 +1,7 @@
 package com.jayfang.dropdownmenu;
 
+import java.util.List;
+
 import com.jayfang.dropdownmenu.example.R;
 
 import android.content.Context;
@@ -22,7 +24,7 @@ import android.widget.TextView;
 public class MenuListAdapter extends BaseAdapter {
 
     private Context context;
-    private String[] strs;
+    private List<MenuBean> menulist;
 
     private int SelectIndex;
     private int TextSize;
@@ -30,9 +32,9 @@ public class MenuListAdapter extends BaseAdapter {
     private boolean showCheck;
     private int CheckIcon;
 
-    public MenuListAdapter(Context context, String[] strs) {
+    public MenuListAdapter(Context context, List<MenuBean> menulist) {
         this.context = context;
-        this.strs=strs;
+        this.menulist=menulist;
         this.TextColor= Color.BLACK;
         this.TextSize=15;
     }
@@ -60,12 +62,12 @@ public class MenuListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return strs.length;
+        return menulist.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return strs[position];
+        return menulist.get(position);
     }
 
     @Override
@@ -79,7 +81,8 @@ public class MenuListAdapter extends BaseAdapter {
         TextView textView=(TextView)v.findViewById(R.id.tv_menu_item);
         textView.setTextSize(TextSize);
         textView.setTextColor(TextColor);
-        textView.setText(strs[position]);
+        MenuBean bean = (MenuBean) getItem(position);
+        textView.setText(bean.getMenuname());
 
         if (showCheck&&SelectIndex==position) {
             ImageView imageView = (ImageView) v.findViewById(R.id.iv_menu_select);
