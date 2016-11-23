@@ -1,5 +1,7 @@
 package com.jayfang.dropdownmenu;
 
+import com.jayfang.dropdownmenu.example.R;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;

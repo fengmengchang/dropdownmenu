@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.jayfang.dropdownmenu;
+package com.jayfang.dropdownmenu.example;
 
 public final class R {
     public static final class attr {
@@ -13,8 +13,10 @@ public final class R {
     public static final class color {
         public static final int default_menu_back=0x7f040000;
         public static final int default_menu_press_back=0x7f040001;
-        public static final int default_menu_text=0x7f040002;
-        public static final int divider=0x7f040003;
+        public static final int default_menu_press_text=0x7f040002;
+        public static final int default_menu_text=0x7f040003;
+        public static final int divider=0x7f040004;
+        public static final int white=0x7f040005;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -26,23 +28,21 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int arrow_bottom=0x7f020000;
-        public static final int arrow_down=0x7f020001;
-        public static final int arrow_up=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int ico_make=0x7f020004;
+        public static final int arrow_down=0x7f020000;
+        public static final int arrow_up=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int ico_make=0x7f020003;
     }
     public static final class id {
-        public static final int iv_divider=0x7f080006;
+        public static final int iv_divider=0x7f080005;
         public static final int iv_menu_arrow=0x7f080004;
-        public static final int iv_menu_arrow_bottom=0x7f080005;
-        public static final int iv_menu_select=0x7f080008;
+        public static final int iv_menu_select=0x7f080007;
         public static final int lv_list=0x7f080001;
-        public static final int lv_menu=0x7f080009;
+        public static final int lv_menu=0x7f080008;
         public static final int menu=0x7f080000;
         public static final int rl_menu_head=0x7f080002;
-        public static final int rl_menu_shadow=0x7f08000a;
-        public static final int tv_menu_item=0x7f080007;
+        public static final int rl_menu_shadow=0x7f080009;
+        public static final int tv_menu_item=0x7f080006;
         public static final int tv_menu_title=0x7f080003;
     }
     public static final class layout {
@@ -57,6 +57,19 @@ public final class R {
         public static final int hello_world=0x7f060001;
     }
     public static final class style {
+        /** 
+        Base application theme for API 11+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 11+ devices.
+    
+ API 11 theme customizations can go here. 
+
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    
+ API 14 theme customizations can go here. 
+         */
+        public static final int AppBaseTheme=0x7f070001;
         /**  Base application theme. 
  Customize your theme here. 
          */

@@ -9,7 +9,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:id="@+id/menu"
-        android:background="@color/default_menu_back"
+        android:background="#ffff00"
         android:layout_height="60dp"/>
 
     <ListView
