@@ -361,6 +361,11 @@ public class DropDownMenu extends LinearLayout{
             mDrawable=false;
         }
     }
-
+    
+    public void setDefault(int mColumnSelected,int mRowSelected){
+    	  mTvMenuTitles.get(mColumnSelected).setText(mMenuItems.get(mColumnSelected).getMenulist().get(mRowSelected).getMenuname());
+          mIvMenuArrow.get(mColumnSelected).setImageResource(mDownArrow);
+          mMenuAdapters.get(mColumnSelected).setSelectIndex(mRowSelected);
+    }
 
 }
