@@ -49,6 +49,8 @@ public class DropDownMenu extends LinearLayout {
 	private List<RelativeLayout> mRlMenuBacks = new ArrayList<RelativeLayout>();
 	// 菜单 的箭头
 	private List<ImageView> mIvMenuArrow = new ArrayList<ImageView>();
+	
+	private List<ImageView> mIvMenuMoreArrow = new ArrayList<ImageView>();
 
 	private Context mContext;
 
@@ -287,13 +289,34 @@ public class DropDownMenu extends LinearLayout {
 				}
 			});
 			
+			mMenuRightList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					mRowSelected = position;
+					mIvMenuMoreArrow.get(mColumnSelected).setImageResource(mDownArrow);
+					mMenuRightAdapters.get(mColumnSelected).setSelectIndex(mRowSelected);
+					mMenuRightAdapters.get(mColumnSelected).notifyDataSetChanged();
+					if (mMenuSelectedListener == null && isDebug)
+						Toast.makeText(mContext, "MenuSelectedListener is  null", Toast.LENGTH_LONG).show();
+					else
+						mMenuSelectedListener.onSelected(view, mRowSelected, mColumnSelected);
+				}
+			});
+			
 			mMenuLeftList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					mColumnSelected =  position;
+					mRowSelected = 0;
 					mMenuRightList.setAdapter(mMenuRightAdapters.get((int)id));
 					if (!mShowDivider)
 						mMenuRightList.setDivider(null);
 					mMenuRightList.setBackgroundColor(mMenuListBackColor);
+					
+					if (mMenuSelectedListener == null && isDebug)
+						Toast.makeText(mContext, "MenuSelectedListener is  null", Toast.LENGTH_LONG).show();
+					else
+						mMenuSelectedListener.onSelected(view, mRowSelected, mColumnSelected);
 				}
 			});
 
@@ -339,7 +362,10 @@ public class DropDownMenu extends LinearLayout {
 				for(int i=0;i<mMenuMoreItems.get(0).getMenulist().size();i++){
 					MenuBean mMenuBean = mMenuMoreItems.get(0).getMenulist().get(i);
 					MenuListAdapter radapter = new MenuListAdapter(mContext, mMenuBean.getRightlist());
+					radapter.setShowCheck(mShowCheck);
+					radapter.setCheckIcon(mCheckIcon);
 					mMenuRightAdapters.add(radapter);
+					
 				}
 			} else if (mMenuLeftAdapters.size() != 	1) {
 				if (isDebug)
@@ -373,8 +399,16 @@ public class DropDownMenu extends LinearLayout {
 				mRlMenuBacks.add(rl);
 
 				ImageView iv = (ImageView) v.findViewById(R.id.iv_menu_arrow);
-				mIvMenuArrow.add(iv);
-				mIvMenuArrow.get(i).setImageResource(mDownArrow);
+				if(i==mMenuCount){
+					for(int j=0;j<mMenuMoreItems.get(0).getMenulist().size();j++){
+						mIvMenuMoreArrow.add(iv);
+						mIvMenuMoreArrow.get(j).setImageResource(mDownArrow);
+					}
+				}else{
+					mIvMenuArrow.add(iv);
+					mIvMenuArrow.get(i).setImageResource(mDownArrow);
+				}
+				
 
 				RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) iv.getLayoutParams();
 				params.leftMargin = mArrowMarginTitle;

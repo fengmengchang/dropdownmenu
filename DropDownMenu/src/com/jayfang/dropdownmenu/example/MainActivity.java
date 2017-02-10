@@ -67,19 +67,56 @@ public class MainActivity extends  Activity {
 		
 		menulist = new ArrayList<MenuBean>();
 		mbean = new MenuBean();
-		mbean.setMenuname("工作地点");
+		mbean.setMenuname("按月薪");
+		menulist.add(mbean);
+		
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("2k以下");
 		menulist.add(mbean);
 		
 		mbean = new MenuBean();
-		mbean.setMenuname("北京");
+		mbean.setMenuname("2k-5k");
 		menulist.add(mbean);
 		
 		mbean = new MenuBean();
-		mbean.setMenuname("上海");
+		mbean.setMenuname("5k-10k");
 		menulist.add(mbean);
 		
 		mbean = new MenuBean();
-		mbean.setMenuname("南京");
+		mbean.setMenuname("10k-15k");
+		menulist.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("15k-25k");
+		menulist.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("25k-50k");
+		menulist.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("50k以上");
+		menulist.add(mbean);
+		dbean.setMenulist(menulist);
+		mMenuItems.add(dbean);
+		
+        dbean= new DropItemBean();
+		menulist = new ArrayList<MenuBean>();
+		mbean = new MenuBean();
+		mbean.setMenuname("按职业性质");
+		menulist.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("全职");
+		menulist.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("兼职");
+		menulist.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("实习");
 		menulist.add(mbean);
 		dbean.setMenulist(menulist);
 		mMenuItems.add(dbean);
@@ -90,6 +127,11 @@ public class MainActivity extends  Activity {
 		mbean = new MenuBean();
 		mbean.setMenuname("工作地点");
 		menulistright = new ArrayList<MenuBean>();
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("不限");
+		menulistright.add(mrbean);
+		
 		mrbean = new MenuBean();
 		mrbean.setMenuname("北京");
 		menulistright.add(mrbean);
@@ -107,6 +149,11 @@ public class MainActivity extends  Activity {
 		mbean = new MenuBean();
 		mbean.setMenuname("工作经验");
 		menulistright = new ArrayList<MenuBean>();
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("全部");
+		menulistright.add(mrbean);
+		
 		mrbean = new MenuBean();
 		mrbean.setMenuname("应届毕业生");
 		menulistright.add(mrbean);
@@ -137,6 +184,10 @@ public class MainActivity extends  Activity {
 		mbean.setMenuname("学历要求");
 		menulistright = new ArrayList<MenuBean>();
 		mrbean = new MenuBean();
+		mrbean.setMenuname("全部");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
 		mrbean.setMenuname("学历不限");
 		menulistright.add(mrbean);
 		
@@ -157,6 +208,10 @@ public class MainActivity extends  Activity {
 		mbean = new MenuBean();
 		mbean.setMenuname("融资阶段");
 		menulistright = new ArrayList<MenuBean>();
+		mrbean = new MenuBean();
+		mrbean.setMenuname("全部");
+		menulistright.add(mrbean);
+		
 		mrbean = new MenuBean();
 		mrbean.setMenuname("未融资");
 		menulistright.add(mrbean);
@@ -194,6 +249,10 @@ public class MainActivity extends  Activity {
 		mbean = new MenuBean();
 		mbean.setMenuname("所属行业");
 		menulistright = new ArrayList<MenuBean>();
+		mrbean = new MenuBean();
+		mrbean.setMenuname("全部");
+		menulistright.add(mrbean);
+		
 		mrbean = new MenuBean();
 		mrbean.setMenuname("互联网");
 		menulistright.add(mrbean);

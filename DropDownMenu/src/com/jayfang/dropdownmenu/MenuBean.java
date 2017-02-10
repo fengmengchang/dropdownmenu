@@ -39,6 +39,7 @@ public class MenuBean implements Serializable {
 	private String dataindex;
 	private String datatype;
 	private String menuname;// 全部
+	private int column;//所属的组id
 
 	private List<MenuBean> rightlist;
 	
@@ -88,6 +89,14 @@ public class MenuBean implements Serializable {
 
 	public void setRightlist(List<MenuBean> rightlist) {
 		this.rightlist = rightlist;
+	}
+
+	public int getColumn() {
+		return column;
+	}
+
+	public void setColumn(int column) {
+		this.column = column;
 	}
 
 }
