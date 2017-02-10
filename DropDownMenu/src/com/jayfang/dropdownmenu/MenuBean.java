@@ -12,6 +12,7 @@
 package com.jayfang.dropdownmenu;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  ***************************************************************************************************************************************************************************** 
@@ -39,6 +40,8 @@ public class MenuBean implements Serializable {
 	private String datatype;
 	private String menuname;// 全部
 
+	private List<MenuBean> rightlist;
+	
 	public String getBoss() {
 		return boss;
 	}
@@ -77,6 +80,14 @@ public class MenuBean implements Serializable {
 
 	public void setMenuname(String menuname) {
 		this.menuname = menuname;
+	}
+
+	public List<MenuBean> getRightlist() {
+		return rightlist;
+	}
+
+	public void setRightlist(List<MenuBean> rightlist) {
+		this.rightlist = rightlist;
 	}
 
 }

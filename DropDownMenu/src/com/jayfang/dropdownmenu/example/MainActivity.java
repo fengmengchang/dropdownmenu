@@ -1,133 +1,246 @@
-//package com.jayfang.dropdownmenu.example;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import android.app.Activity;
-//import android.graphics.Color;
-//import android.os.Bundle;
-//import android.util.Log;
-//import android.view.View;
-//import android.widget.ArrayAdapter;
-//import android.widget.ListView;
-//
-//import com.jayfang.dropdownmenu.DropDownMenu;
-//import com.jayfang.dropdownmenu.OnMenuSelectedListener;
-//
-//
-//public class MainActivity extends  Activity {
-//
-//    private DropDownMenu mMenu;
-//    private ListView mList;
-//
-//    private int city_index;
-//    private int sex_index;
-//    private int age_index;
-//    private List<String> data;
-//    String[] arr1 = new String[] { "类型", "全部", "动作", "冒险", "喜剧" };
-//	String[] arr2 = new String[] { "地区", "全部", "内地", "香港", "台湾" };
-//	String[] arr3 = new String[] { "年份", "全部", "2016", "2015", "2014", "2013-2011", "2010-2006", "2005-2000" };
-//	String[] arr4 = new String[] { "剧情看点", "全部", "青春校园", "失恋自愈", "肌肉硬汉" };
-//	String[] arr5 = new String[] { "分类", "全部", "微电影", "预告片", "电影特辑" };
-//	String[] arr6 = new String[] { "资费", "全部", "免费", "会员" };
-//	String[] arr7 = new String[] { "清晰度", "全部", "1080p" };
-//
-//    final String[] strings=new String[]{"类型","地区","年份","剧情看点","分类","资费","清晰度"};
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        mMenu=(DropDownMenu)findViewById(R.id.menu);
-//
-//        mMenu.setmMenuCount(7);
-//        mMenu.setmShowCount(6);
-//        mMenu.setShowCheck(true);
-//        mMenu.setmMenuTitleTextSize(16);
-//        mMenu.setmMenuTitleTextColor(Color.parseColor("#777777"));
-//        mMenu.setmMenuListTextSize(16);
-//        mMenu.setmMenuListTextColor(Color.BLACK);
-//        mMenu.setmMenuBackColor(Color.parseColor("#eeeeee"));
-//        mMenu.setmMenuPressedBackColor(Color.WHITE);
-//        mMenu.setmMenuPressedTitleTextColor(Color.BLACK);
-//
-//        mMenu.setmCheckIcon(R.drawable.ico_make);
-//
-//        mMenu.setmUpArrow(R.drawable.arrow_up);
-//        mMenu.setmDownArrow(R.drawable.arrow_down);
-//
-//        mMenu.setDefaultMenuTitle(strings);
-//
-//
-//        mMenu.setShowDivider(false);
-//        mMenu.setmMenuListBackColor(getResources().getColor(R.color.white));
-//        mMenu.setmMenuListSelectorRes(R.color.white);
-//        mMenu.setmArrowMarginTitle(20);
-//
-//        mMenu.setMenuSelectedListener(new OnMenuSelectedListener() {
-//            @Override
-//            public void onSelected(View listview, int RowIndex, int ColumnIndex) {
-//                Log.i("MainActivity", "select " + ColumnIndex + " column and " + RowIndex + " row");
-//                if (ColumnIndex == 0) {
-//                    city_index = RowIndex;
-//                } else if (ColumnIndex == 1) {
-//                    sex_index = RowIndex;
-//                } else {
-//                    age_index = RowIndex;
-//                }
-//                //过滤筛选
-//                setFilter();
-//            }
-//        });
-//        List<String[]> items = new ArrayList<String[]>();
-//		items.add(arr1);
-//		items.add(arr2);
-//		items.add(arr3);
-//		items.add(arr4);
-//		items.add(arr5);
-//		items.add(arr6);
-//		items.add(arr7);
-//        mMenu.setmMenuItems(items);
-//
-////        new Handler().postDelayed(new Runnable() {
-////            @Override
-////            public void run() {
-////                List<String[]> items = new ArrayList<>();
-////                items.add(arr1);
-////                items.add(arr2);
-////                items.add(arr3);
-////                mMenu.setmMenuItems(items);
-////
-////            }
-////        }, 1000);
-//
-//        mMenu.setIsDebug(false);
-//
-//        mList=(ListView)findViewById(R.id.lv_list);
-//        data=getData();
-//        mList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, data));
-//
-//    }
-//
-//    private void setFilter(){
-//        List<String> temp=new ArrayList<String>();
-//        for (int i=0;i<getData().size();i++){
-//            boolean city=((city_index==0)?true:data.get(i).contains(arr1[city_index]));
-//            boolean sex=((sex_index==0)?true:data.get(i).contains(arr2[sex_index]));
-//            boolean age=((age_index==0)?true:data.get(i).contains(arr3[age_index]));
-//            if(city && sex && age){
-//                temp.add(data.get(i));
-//            }
-//        }
-//        mList.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_expandable_list_item_1,temp));
-//    }
-//
-//    private List<String> getData(){
-//        List<String> data = new ArrayList<String>();
-//        data.add("上海-上海-上海-上海-上海－男－10");
-//        return data;
-//    }
-//
-// 
-//}
+package com.jayfang.dropdownmenu.example;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
+import com.jayfang.dropdownmenu.DropDownMenu;
+import com.jayfang.dropdownmenu.DropItemBean;
+import com.jayfang.dropdownmenu.MenuBean;
+import com.jayfang.dropdownmenu.OnMenuSelectedListener;
+
+
+public class MainActivity extends  Activity {
+
+    private DropDownMenu mMenu;
+    private List<DropItemBean> mMenuItems=new ArrayList<DropItemBean>();
+    private List<DropItemBean> mMenuMoreItems=new ArrayList<DropItemBean>();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mMenu=(DropDownMenu)findViewById(R.id.menu);
+        init();
+        
+        mMenu.setmMenuCount(mMenuItems.size());
+        mMenu.setmShowCount(6);
+        mMenu.setShowCheck(true);
+        mMenu.setmMenuTitleTextSize(16);
+        mMenu.setmMenuTitleTextColor(Color.parseColor("#777777"));
+        mMenu.setmMenuListTextSize(16);
+        mMenu.setmMenuListTextColor(Color.BLACK);
+        mMenu.setmMenuBackColor(Color.parseColor("#eeeeee"));
+        mMenu.setmMenuPressedBackColor(Color.WHITE);
+        mMenu.setmMenuPressedTitleTextColor(Color.BLACK);
+        mMenu.setmCheckIcon(R.drawable.ico_make);
+        mMenu.setmUpArrow(R.drawable.arrow_up);
+        mMenu.setmDownArrow(R.drawable.arrow_down);
+
+        mMenu.setShowDivider(false);
+        mMenu.setmMenuListBackColor(getResources().getColor(R.color.white));
+        mMenu.setmMenuListSelectorRes(R.color.white);
+        mMenu.setmArrowMarginTitle(20);
+
+        mMenu.setMenuSelectedListener(new OnMenuSelectedListener() {
+            @Override
+            public void onSelected(View listview, int RowIndex, int ColumnIndex) {
+                Log.i("MainActivity", "select " + ColumnIndex + " column and " + RowIndex + " row");
+            }
+        });
+        
+        mMenu.setmMenuMoreItems(mMenuMoreItems);
+        mMenu.setmMenuItems(mMenuItems);
+        mMenu.setIsDebug(false);
+    }
+	private void init() {
+		List<MenuBean> menulist;
+		List<MenuBean> menulistleft;
+		List<MenuBean> menulistright;
+		MenuBean mbean;
+		MenuBean mrbean;
+		DropItemBean dbean= new DropItemBean();
+		
+		menulist = new ArrayList<MenuBean>();
+		mbean = new MenuBean();
+		mbean.setMenuname("工作地点");
+		menulist.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("北京");
+		menulist.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("上海");
+		menulist.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("南京");
+		menulist.add(mbean);
+		dbean.setMenulist(menulist);
+		mMenuItems.add(dbean);
+		
+		
+		dbean= new DropItemBean();
+		menulistleft = new ArrayList<MenuBean>();
+		mbean = new MenuBean();
+		mbean.setMenuname("工作地点");
+		menulistright = new ArrayList<MenuBean>();
+		mrbean = new MenuBean();
+		mrbean.setMenuname("北京");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("上海");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("南京");
+		menulistright.add(mrbean);
+		mbean.setRightlist(menulistright);
+		menulistleft.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("工作经验");
+		menulistright = new ArrayList<MenuBean>();
+		mrbean = new MenuBean();
+		mrbean.setMenuname("应届毕业生");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("1-3年");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("3-5年");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("5-10年");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("10年以上");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("不限");
+		menulistright.add(mrbean);
+		mbean.setRightlist(menulistright);
+		menulistleft.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("学历要求");
+		menulistright = new ArrayList<MenuBean>();
+		mrbean = new MenuBean();
+		mrbean.setMenuname("学历不限");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("大专");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("硕士");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("博士");
+		menulistright.add(mrbean);
+		mbean.setRightlist(menulistright);
+		menulistleft.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("融资阶段");
+		menulistright = new ArrayList<MenuBean>();
+		mrbean = new MenuBean();
+		mrbean.setMenuname("未融资");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("天使轮");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("A轮");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("B轮");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("C轮");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("D轮及以上");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("上市公司");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("需要融资");
+		menulistright.add(mrbean);
+		mbean.setRightlist(menulistright);
+		menulistleft.add(mbean);
+		
+		mbean = new MenuBean();
+		mbean.setMenuname("所属行业");
+		menulistright = new ArrayList<MenuBean>();
+		mrbean = new MenuBean();
+		mrbean.setMenuname("互联网");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("电子商务");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("游戏");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("文化娱乐");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("广告营销");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("软件");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("教育");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("硬件");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("艺术");
+		menulistright.add(mrbean);
+		
+		mrbean = new MenuBean();
+		mrbean.setMenuname("其他");
+		menulistright.add(mrbean);
+		mbean.setRightlist(menulistright);
+		menulistleft.add(mbean);
+		
+		dbean.setMenulist(menulistleft);
+		
+		mMenuMoreItems.add(dbean);
+		 
+	}
+ 
+ 
+}
