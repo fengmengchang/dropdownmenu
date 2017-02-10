@@ -355,23 +355,26 @@ public class DropDownMenu extends LinearLayout {
 				return;
 			}
 
-			if (mMenuLeftAdapters.size() == 0) {
-				MenuListAdapter adapter = new MenuListAdapter(mContext, mMenuMoreItems.get(0).getMenulist());
-				mMenuLeftAdapters.add(adapter);
-				
-				for(int i=0;i<mMenuMoreItems.get(0).getMenulist().size();i++){
-					MenuBean mMenuBean = mMenuMoreItems.get(0).getMenulist().get(i);
-					MenuListAdapter radapter = new MenuListAdapter(mContext, mMenuBean.getRightlist());
-					radapter.setShowCheck(mShowCheck);
-					radapter.setCheckIcon(mCheckIcon);
-					mMenuRightAdapters.add(radapter);
+			if(mMenuMoreItems!=null && mMenuMoreItems.size()>0){
+				if (mMenuLeftAdapters.size() == 0 ) {
+					MenuListAdapter adapter = new MenuListAdapter(mContext, mMenuMoreItems.get(0).getMenulist());
+					mMenuLeftAdapters.add(adapter);
 					
+					for(int i=0;i<mMenuMoreItems.get(0).getMenulist().size();i++){
+						MenuBean mMenuBean = mMenuMoreItems.get(0).getMenulist().get(i);
+						MenuListAdapter radapter = new MenuListAdapter(mContext, mMenuBean.getRightlist());
+						radapter.setShowCheck(mShowCheck);
+						radapter.setCheckIcon(mCheckIcon);
+						mMenuRightAdapters.add(radapter);
+						
+					}
+				} else if (mMenuLeftAdapters.size() != 	1) {
+					if (isDebug)
+						Toast.makeText(mContext, "If you want set Adapter by yourself,please ensure the number of adpaters equal mMenuCount", Toast.LENGTH_LONG).show();
+					return;
 				}
-			} else if (mMenuLeftAdapters.size() != 	1) {
-				if (isDebug)
-					Toast.makeText(mContext, "If you want set Adapter by yourself,please ensure the number of adpaters equal mMenuCount", Toast.LENGTH_LONG).show();
-				return;
 			}
+			
 
 			int width = getWidth();
 
