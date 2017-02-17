@@ -285,7 +285,7 @@ public class DropDownMenu extends LinearLayout {
 					if (mMenuSelectedListener == null && isDebug)
 						Toast.makeText(mContext, "MenuSelectedListener is  null", Toast.LENGTH_LONG).show();
 					else
-						mMenuSelectedListener.onSelected(view, mRowSelected, mColumnSelected);
+						mMenuSelectedListener.onSelected(view,0, mRowSelected, mColumnSelected);
 				}
 			});
 			
@@ -299,7 +299,7 @@ public class DropDownMenu extends LinearLayout {
 					if (mMenuSelectedListener == null && isDebug)
 						Toast.makeText(mContext, "MenuSelectedListener is  null", Toast.LENGTH_LONG).show();
 					else
-						mMenuSelectedListener.onSelected(view, mRowSelected, mColumnSelected);
+						mMenuSelectedListener.onSelected(view, 1,mRowSelected, mColumnSelected);
 				}
 			});
 			
@@ -316,7 +316,7 @@ public class DropDownMenu extends LinearLayout {
 					if (mMenuSelectedListener == null && isDebug)
 						Toast.makeText(mContext, "MenuSelectedListener is  null", Toast.LENGTH_LONG).show();
 					else
-						mMenuSelectedListener.onSelected(view, mRowSelected, mColumnSelected);
+						mMenuSelectedListener.onSelected(view,0, mRowSelected, mColumnSelected);
 				}
 			});
 
