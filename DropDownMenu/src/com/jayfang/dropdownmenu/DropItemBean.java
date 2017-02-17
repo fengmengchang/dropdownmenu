@@ -28,6 +28,7 @@ import java.util.List;
 public class DropItemBean implements Serializable {
 	private List<MenuBean> menulist;
 	private String label;
+	private String typehref;
 
 	public List<MenuBean> getMenulist() {
 		return menulist;
@@ -44,5 +45,15 @@ public class DropItemBean implements Serializable {
 	public void setLabel(String label) {
 		this.label = label;
 	}
+
+	public String getTypehref() {
+		return typehref;
+	}
+
+	public void setTypehref(String typehref) {
+		this.typehref = typehref;
+	}
+
+	 
 
 }
